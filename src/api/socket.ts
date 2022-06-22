@@ -1,5 +1,7 @@
-export const connectSocket = (): void => {
+export const connectSocket = (url: string): WebSocket => {
   const socket = new WebSocket('wss://hometask.eg1236.com/game-pipes/');
+
+  return socket;
   socket.onopen = function (_e) {
     alert('[open] Connection established');
     alert('Sending to server');
