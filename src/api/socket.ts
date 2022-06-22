@@ -1,5 +1,5 @@
-export const connectSocket = (url: string): WebSocket => {
-  const socket = new WebSocket('wss://hometask.eg1236.com/game-pipes/');
+export const getSocket = (url: string): WebSocket => {
+  const socket = new WebSocket(url);
 
   return socket;
   socket.onopen = function (_e) {
