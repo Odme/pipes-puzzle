@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { connectSocket } from './api/socket';
+// import { connectSocket } from './api/socket';
 import App from './App';
 import './index.css';
 
-connectSocket();
+// connectSocket();
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 ReactDOM.createRoot(document.getElementById('root')!).render(
