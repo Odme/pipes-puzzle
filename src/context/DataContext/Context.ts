@@ -6,7 +6,17 @@ export interface PipesData {
   currentLevel: number;
   hasAction: boolean;
   hasFinish: boolean;
+  error: string | null;
 }
 
-export const DataContext = createContext<PipesData | null>(null);
-export const useData = () => useContext(DataContext) as PipesData;
+export const initialContext = {
+  connected: false,
+  map: null,
+  currentLevel: 1,
+  hasAction: false,
+  hasFinish: false,
+  error: null,
+};
+
+export const DataContext = createContext<PipesData>(initialContext);
+export const useData = () => useContext(DataContext);

@@ -1,6 +1,9 @@
 import { OrbitControls, Stars, useContextBridge } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import './App.css';
+
+import { Content } from './components/Content';
+import { Header } from './components/Header';
+import { Layout } from './components/Layout';
 import Pipe from './components/Pipe';
 import { ServicesContext } from './context/ServicesContext/Context';
 import { SocketContext } from './context/WebsocketContext/Context';
@@ -9,9 +12,9 @@ const App = () => {
   const ContextBridge = useContextBridge(SocketContext, ServicesContext);
 
   return (
-    <div className="app">
-      <div className="header">This is the header</div>
-      <div className="content">
+    <Layout>
+      <Header>This is the header</Header>
+      <Content>
         <Canvas>
           <ContextBridge>
             <OrbitControls />
@@ -39,8 +42,8 @@ const App = () => {
             </mesh>
           </ContextBridge>
         </Canvas>
-      </div>
-    </div>
+      </Content>
+    </Layout>
   );
 };
 
