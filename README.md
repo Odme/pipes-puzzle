@@ -1,5 +1,5 @@
 # Pipes Puzzle 🧪
-Evolution Home Challenge
+Evolution Home Challenge. Deployed in [Surge](odme-pipes-puzzle.surge.sh) 🛫.
 
 ## Technologies 🧑‍💻⛰️
 
@@ -38,7 +38,7 @@ Evolution Home Challenge
 - Socket Message parsing, probably I'm losing some messages and they aren't storaged in the state
 
 
-## Level Passwords Obtained 🎚️
+## Level Passwords Obtained 🎮
 
 - Still in progress
 
