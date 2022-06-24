@@ -1,5 +1,5 @@
 # Pipes Puzzle 🧪
-Evolution Home Challenge. Deployed in [Surge](odme-pipes-puzzle.surge.sh) 🛫.
+Evolution Home Challenge. Deployed in [Surge](http://odme-pipes-puzzle.surge.sh) 🛫.
 
 ## Technologies 🧑‍💻⛰️
 
