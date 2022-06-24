@@ -5,4 +5,5 @@ export const Content = styled.div`
   grid-area: content;
   background-color: #353535;
   height: 100%;
+  z-index: 0;
 `;

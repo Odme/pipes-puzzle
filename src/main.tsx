@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import DataProvider from './context/DataContext/Provider';
 import ServicesProvider from './context/ServicesContext/Provider';
+import { PipesThemeProvider } from './context/Theme/Provider';
 import SocketProvider from './context/WebsocketContext/Provider';
 import './index.css';
 
@@ -14,9 +15,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <SocketProvider>
       <ServicesProvider>
-        <DataProvider>
-          <App />
-        </DataProvider>
+        <PipesThemeProvider>
+          <DataProvider>
+            <App />
+          </DataProvider>
+        </PipesThemeProvider>
       </ServicesProvider>
     </SocketProvider>
   </React.StrictMode>,

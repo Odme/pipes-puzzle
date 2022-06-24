@@ -25,15 +25,27 @@ const DataProvider: FC<DataProviderProps> = ({ children }) => {
   }, []);
 
   const onMessage = useCallback((event: MessageEvent) => {
-    const action = parseSockectMessage(event.data as string);
-    switch (action.key) {
-      case 'help':
-      case 'new':
-      case 'map':
-      case 'rotate':
-      case 'verify':
-        console.log(action);
-        break;
+    const { key, payload } = parseSockectMessage(event.data as string);
+    switch (key) {
+      case 'help': {
+        return console.log({ payload });
+      }
+      case 'new': {
+        return dispatch({ hasStarted: true });
+      }
+      case 'map': {
+        console.log(payload);
+        const mapRows = payload.split(/\r?\n/);
+        const mapMatrix = mapRows.map((row) => [...row]);
+        console.table(mapMatrix);
+        return dispatch({ map: mapMatrix });
+      }
+      case 'rotate': {
+        return console.log({ key, payload });
+      }
+      case 'verify': {
+        return dispatch({ hasFinish: !payload.startsWith('Incorrect') });
+      }
       default:
         console.log('Unknown message clasification');
         break;
