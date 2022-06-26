@@ -51,7 +51,8 @@ Evolution Home Challenge. Deployed in [Surge](http://odme-pipes-puzzle.surge.sh)
 
 ## Level Passwords Obtained 🎮
 
-- Still in progress
+- Level 1
+- Level 2: Still in progress
 
 ## Known Limitations ❗
 
