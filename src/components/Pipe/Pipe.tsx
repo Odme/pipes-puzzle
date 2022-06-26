@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment */
 import { FC } from 'react';
 import { extend, Vector3 } from '@react-three/fiber';
@@ -17,6 +18,7 @@ const Pipe: FC<PipeProps> = ({ position = [0, 0, 0], character = '0' }) => {
 
   return (
     <mesh position={position}>
+      {/* @ts-ignore reason: textGeometry isn't included in the three fiber or three package */}
       <textGeometry
         attach="geometry"
         args={[character, { font, size: 3, height: 0 }]}

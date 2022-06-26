@@ -1,7 +1,7 @@
 import { FC, Fragment, useCallback, useEffect } from 'react';
 import { useBounds } from '@react-three/drei';
 
-import Tube from '../Pipe/Pipe';
+import Pipe from '../Pipe/Pipe';
 import { useData } from '../../context/DataContext/Context';
 import { useServices } from '../../context/ServicesContext/Context';
 import PlaneBox from '../PlaneBox';
@@ -34,7 +34,7 @@ export const PipesTable: FC = () => {
                 coordenates={{ x: xIndex, y: yIndex }}
                 onRotate={rotatePipe}
               />
-              <Tube
+              <Pipe
                 position={[xIndex * 4.2, yIndex * -5.2, 0.01]}
                 character={map[yIndex][xIndex]}
               />
