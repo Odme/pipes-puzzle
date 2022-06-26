@@ -25,13 +25,13 @@ Evolution Home Challenge. Deployed in [Surge](http://odme-pipes-puzzle.surge.sh)
 - Composed components looks cleaner
 
 
-## Additional Tools
+## Additional Tools 🧰
 
-### Google Fonts
+### Google Fonts ⌨️
 
 - Required to find a font with all pipes figures (Used font: [Sawarabi Mincho](https://fonts.google.com/specimen/Sawarabi+Mincho))
 
-### [Facetype.js](https://gero3.github.io/facetype.js/)
+### [Facetype.js](https://gero3.github.io/facetype.js/) 🩹
 
 - Required to transform the fonts and map a json with all pipes paths to create a geometry element with it
 
