@@ -10,7 +10,6 @@ export interface Services {
 export const getServices = (socket: WebSocket): Services => ({
   requestCurrentMap: () => {
     socket.send('map');
-    socket.send('help');
   },
   requestNewLevel: (level) => {
     socket.send(`new ${level}`);

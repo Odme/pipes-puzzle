@@ -2,12 +2,13 @@ import { HeadingBox } from './HeadingBox';
 import { Button } from '../General/Button';
 import { Header } from '../General/Header';
 import { useServices } from '../../context/ServicesContext/Context';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useData } from '../../context/DataContext/Context';
 
 export const Heading = () => {
   const services = useServices();
-  const { currentLevel, hasStarted, hasAction } = useData();
+  const { connected, currentLevel, hasAction, hasFinish, hasStarted, map } =
+    useData();
 
   const onClickLoadMapHandler = useCallback(() => {
     services.requestNewLevel(currentLevel);
@@ -18,18 +19,27 @@ export const Heading = () => {
     services.requestVerifyLevel();
   }, [services]);
 
+  const generateLoadTest = useMemo(() => {
+    if (hasFinish) {
+      return 'Load New Level';
+    }
+    if (!map) {
+      return 'Load Map';
+    }
+    return 'Reload Map';
+  }, [hasFinish, map]);
+
   return (
     <Header>
       <HeadingBox>
-        <Button onClick={onClickLoadMapHandler}>Reload Map</Button>
+        <Button onClick={onClickLoadMapHandler} disabled={!connected}>
+          {generateLoadTest}
+        </Button>
         <Button
-          disabled={!(hasStarted && hasAction)}
           onClick={onClickVerifyHandler}
+          disabled={!(connected && hasStarted && hasAction)}
         >
           Verify
-        </Button>
-        <Button onClick={() => services.requestRotatePipe(0, 0)}>
-          Rotate Test
         </Button>
       </HeadingBox>
     </Header>

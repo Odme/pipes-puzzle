@@ -21,40 +21,53 @@ const DataProvider: FC<DataProviderProps> = ({ children }) => {
 
   const onOpen = useCallback(() => {
     console.log('The socket is open!');
-    dispatch({ connected: true });
+    dispatch({ ...initialContext, connected: true });
   }, []);
 
-  const onMessage = useCallback((event: MessageEvent) => {
-    const { key, payload } = parseSockectMessage(event.data as string);
-    switch (key) {
-      case 'help': {
-        return console.log({ payload });
+  const onMessage = useCallback(
+    (event: MessageEvent) => {
+      const { key, payload } = parseSockectMessage(event.data as string);
+      switch (key) {
+        case 'help': {
+          return console.log({ payload });
+        }
+        case 'new': {
+          return dispatch({ hasFinish: false, hasStarted: true });
+        }
+        case 'map': {
+          // console.log(payload);
+          const mapRows = payload.split(/\r?\n/);
+          const mapMatrix = mapRows.map((row) => [...row]);
+          // console.table(mapMatrix);
+          return dispatch({ map: mapMatrix });
+        }
+        case 'rotate': {
+          dispatch({ hasAction: true });
+          return console.log({ key, payload });
+        }
+        case 'verify': {
+          if (!payload.startsWith('Incorrect')) {
+            return dispatch({
+              map: null,
+              hasFinish: true,
+              currentLevel: state.currentLevel + 1,
+            });
+          }
+          return dispatch({
+            hasAction: false,
+          });
+        }
+        default:
+          console.log('Unknown message clasification');
+          break;
       }
-      case 'new': {
-        return dispatch({ hasStarted: true });
-      }
-      case 'map': {
-        console.log(payload);
-        const mapRows = payload.split(/\r?\n/);
-        const mapMatrix = mapRows.map((row) => [...row]);
-        console.table(mapMatrix);
-        return dispatch({ map: mapMatrix });
-      }
-      case 'rotate': {
-        return console.log({ key, payload });
-      }
-      case 'verify': {
-        return dispatch({ hasFinish: !payload.startsWith('Incorrect') });
-      }
-      default:
-        console.log('Unknown message clasification');
-        break;
-    }
-  }, []);
+    },
+    [state.currentLevel],
+  );
 
   const onClose = useCallback(() => {
     alert('The socket is close!');
-    dispatch({ connected: false });
+    dispatch({ ...initialContext });
   }, []);
 
   useEffect(() => {
