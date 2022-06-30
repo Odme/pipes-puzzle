@@ -14,7 +14,7 @@ export const PipesTable: FC = () => {
   useEffect(() => {
     if (map) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-      bounds.refresh().clip().fit();
+      bounds.refresh().fit();
     }
   }, [bounds, map]);
 
@@ -25,21 +25,25 @@ export const PipesTable: FC = () => {
 
   return (
     <>
-      {map?.map((tubesRow, xIndex) =>
-        tubesRow?.map((tube, yIndex) => {
-          return map[yIndex] ? (
-            <Fragment key={`${tube}-${xIndex}-${yIndex}`}>
+      {map?.map((tubesRow, rowIndex) =>
+        tubesRow?.map((tube, columnIndex) => {
+          return (
+            <Fragment key={`${tube}-${rowIndex}-${columnIndex}`}>
               <PlaneBox
-                position={[(xIndex + 0.5) * 4.2, (yIndex - 0.3) * -5.2, 0]}
-                coordenates={{ x: xIndex, y: yIndex }}
+                position={[
+                  (columnIndex + 0.5) * 4.2,
+                  (rowIndex - 0.3) * -5.2,
+                  0,
+                ]}
+                coordenates={{ x: columnIndex, y: rowIndex }}
                 onRotate={rotatePipe}
               />
               <Pipe
-                position={[xIndex * 4.2, yIndex * -5.2, 0.01]}
-                character={map[yIndex][xIndex]}
+                position={[columnIndex * 4.2, rowIndex * -5.2, 0.01]}
+                character={map[rowIndex][columnIndex]}
               />
             </Fragment>
-          ) : null;
+          );
         }),
       )}
     </>

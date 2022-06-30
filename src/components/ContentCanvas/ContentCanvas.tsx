@@ -1,4 +1,10 @@
-import { Bounds, Center, Stars, useContextBridge } from '@react-three/drei';
+import {
+  Bounds,
+  Center,
+  OrbitControls,
+  Stars,
+  useContextBridge,
+} from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { ThemeContext } from 'styled-components';
 
@@ -18,9 +24,9 @@ export const ContentCanvas = () => {
   return (
     <Canvas flat>
       <ContextBridge>
-        {/* <OrbitControls enabled /> */}
+        <OrbitControls enabled enableRotate={false} />
         <Stars />
-        <Bounds fit clip damping={5} margin={0.8}>
+        <Bounds fit damping={5} margin={0.8}>
           <Center
             key="bounds-center"
             attach={undefined}
